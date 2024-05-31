@@ -68,7 +68,7 @@ aws iam get-policy --policy-arn=${OCM_POLICY_ARN}
 if [ $? != 0 ]; then
     echo "missing ocm operator policy...creating from '${OCM_POLICY_FILE}'..."
     policy=$(curl -s "${OCM_POLICY_FILE}")
-    new_policy=${new_policy//\$OCM_ROLE_RESOURCE_FILTER/$OCM_ROLE_RESOURCE_FILTER}
+    new_policy=${policy//\$OCM_ROLE_RESOURCE_FILTER/$OCM_ROLE_RESOURCE_FILTER}
     new_policy=${new_policy//\$OCM_POLICY_RESOURCE_FILTER/$OCM_POLICY_RESOURCE_FILTER}
     aws iam create-policy \
         --policy-name "${OCM_POLICY_NAME}" \
